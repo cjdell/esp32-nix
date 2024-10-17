@@ -43,16 +43,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1724640360,
-        "narHash": "sha256-l77E6PA/NGCKw9hMOSZjqLTCb6FNEqh/SDkdds/KF9o=",
+        "lastModified": 1718773764,
+        "narHash": "sha256-e1PD1kCXX00+0AyaFb5mGkkkNfKx+xdLvVVnoMBvQuo=",
         "owner": "mirrexagon",
         "repo": "nixpkgs-esp-dev",
-        "rev": "e740e017122636ac1dbce9c0e3d867b9947a1687",
+        "rev": "86a2bbe01fe0258887de7396af2a5eb0e37ac3be",
         "type": "github"
       },
       "original": {
         "owner": "mirrexagon",
         "repo": "nixpkgs-esp-dev",
+        "rev": "86a2bbe01fe0258887de7396af2a5eb0e37ac3be",
         "type": "github"
       }
     },
