@@ -1,5 +1,7 @@
 #include "Arduino.h"
 
+#define LED 12
+
 void setup()
 {
     Serial.begin(115200);
@@ -7,11 +9,17 @@ void setup()
     {
     }
 
+    pinMode(LED, OUTPUT);
+
     Serial.println("Setup complete");
 }
 
 void loop()
 {
     Serial.println("Loop");
-    delay(1000);
+
+    digitalWrite(LED, HIGH);
+    delay(100);
+    digitalWrite(LED, LOW);
+    delay(900);
 }
