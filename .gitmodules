@@ -1,0 +1,3 @@
+[submodule "components/WiFiManager"]
+	path = components/WiFiManager
+	url = git@github.com:cjdell/WiFiManager.git
