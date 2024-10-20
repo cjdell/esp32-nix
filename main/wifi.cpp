@@ -21,6 +21,10 @@ void init_wifi()
 
   ESP_LOGI(TAG, "WiFiManager starting...");
 
+  WiFi.mode(WIFI_AP_STA);
+
+  delay(1000);
+
   // WiFiManager, Local intialization. Once its business is done, there is no need to keep it around
   WiFiManager wm;
 
