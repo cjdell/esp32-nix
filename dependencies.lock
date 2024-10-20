@@ -53,6 +53,12 @@ dependencies:
       service_url: https://api.components.espressif.com/
       type: service
     version: 1.5.1
+  espressif/esp_codec_dev:
+    component_hash: bfa92c177f836be5847e4a4248349267614500e1e0728c4939e51a73746b8918
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 1.0.3
   espressif/esp_diag_data_store:
     component_hash: c1e5cf62f545d2b136db299f4df1b228b9840be5bc3410c9ad2d2a882b5c0d64
     source:
@@ -154,12 +160,18 @@ dependencies:
     source:
       type: idf
     version: 5.1.4
+  jmattsson/picotts:
+    component_hash: 014347592533c6c1eb1ec62bf3a34a9b2bdcc7a0d23eadcd203ad718540d1f31
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 1.1.2
   joltwallet/littlefs:
     component_hash: 362f1f5beb5087b0c60169aff82676d2d0ffc991ead975212b0cba95959181c5
     source:
       service_url: https://api.components.espressif.com/
       type: service
     version: 1.14.8
-manifest_hash: 8dc5de3afc8548ac19691debf241785ff154476673ed08f1786f49a7aaed3889
-target: esp32
+manifest_hash: bfe0b86df42cf33ff3a5afcd5dc1c4b6cda7686b379cc64962f5519c5f35dadd
+target: esp32s3
 version: 1.0.0

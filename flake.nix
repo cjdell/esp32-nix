@@ -22,15 +22,17 @@
       {
         devShell = pkgs.mkShell
           {
-            name = "esp32-nix";
+            name = "esp32-s3-nix";
 
             buildInputs = with pkgs; [
+              mkspiffs-presets.esp-idf
+
               # esp-idf-full
               (esp-idf-esp32.override {
                 rev = "632e0c2a9fc7c754db4135dabb67f7fc6aa9fb87";
                 sha256 = "sha256-j3NaEzMPg2qJ37Gy1y1rdaFdR1/047jOef0Sw/XnCzc=";
                 toolsToInclude = [
-                  "xtensa-esp32-elf"
+                  "xtensa-esp32s3-elf"
                 ];
               })
             ];
