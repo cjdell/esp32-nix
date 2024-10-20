@@ -59,6 +59,25 @@ void check_fs()
   {
     ESP_LOGI(TAG, "Partition size: total: %d, used: %d", total, used);
   }
+
+  // Open file for reading
+  ESP_LOGI(TAG, "Reading file");
+  auto f = fopen("/spiffs/hello.txt", "r");
+  if (f == NULL)
+  {
+    ESP_LOGE(TAG, "Failed to open file for reading");
+    return;
+  }
+  char line[64];
+  fgets(line, sizeof(line), f);
+  fclose(f);
+  // strip newline
+  char *pos = strchr(line, '\n');
+  if (pos)
+  {
+    *pos = '\0';
+  }
+  ESP_LOGI(TAG, "Read from file: '%s'", line);
 }
 
 extern "C" void app_main()
