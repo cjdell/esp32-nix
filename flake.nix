@@ -26,6 +26,7 @@
 
             buildInputs = with pkgs; [
               mkspiffs-presets.esp-idf
+              screen
 
               # esp-idf-full
               (esp-idf-esp32.override {

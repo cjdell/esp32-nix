@@ -14,7 +14,7 @@ const char greeting[] = "Hello from ESP32-S3";
 
 static void on_samples(int16_t *buf, unsigned count)
 {
-  ESP_LOGI(TAG, "Samples: %i", count);
+  // ESP_LOGI(TAG, "Samples: %i", count);
 }
 
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/spiffs/main/spiffs_example_main.c
