@@ -4,9 +4,20 @@ void init_wifi()
 {
   delay(5000);
 
-  nvs_flash_init();
+  pinMode(0, INPUT);
+  digitalWrite(0, HIGH); // Pull-up
+
+  if (digitalRead(0) == LOW)
+  {
+    ESP_LOGW(TAG, "==== ERASING FLASH ====");
+    ESP_ERROR_CHECK(nvs_flash_erase());
+  }
 
   delay(5000);
+
+  nvs_flash_init();
+
+  delay(1000);
 
   ESP_LOGI(TAG, "WiFiManager starting...");
 
@@ -30,7 +41,14 @@ void init_wifi()
   if (!res)
   {
     ESP_LOGE(TAG, "Failed to connect");
-    // ESP.restart();
+
+    ESP_LOGW(TAG, "==== ERASING FLASH IN 5 SECONDS ====");
+
+    delay(5000);
+
+    ESP_ERROR_CHECK(nvs_flash_erase());
+
+    ESP.restart();
   }
   else
   {

@@ -20,9 +20,13 @@ You must have the `direnv` package installed on the host and have the recommende
 
 https://github.com/Mjrovai/XIAO-ESP32S3-Sense
 https://github.com/espressif/arduino-esp32/blob/master/variants/XIAO_ESP32S3/pins_arduino.h
+https://wiki.seeedstudio.com/xiao_esp32s3_pin_multiplexing/
 
 https://github.com/Seeed-Studio/wiki-documents/issues/719
 E (407) quad_psram: PSRAM ID read error: 0x00ffffff, PSRAM chip not found or not supported, or wrong PSRAM line mode
 
 https://github.com/espressif/arduino-esp32/issues/761
 wifi:wifi osi_nvs_open fail ret=4353
+
+W (11327) phy_init: failed to load RF calibration data (0x1102), falling back to full calibration
+W (11366) phy_init: saving new calibration data because of checksum failure, mode(2)
