@@ -25,7 +25,7 @@ void setup()
   ESP_LOGI("main", "PSRAM SIZE: %i", (int)heap_caps_get_total_size(MALLOC_CAP_SPIRAM));
   ESP_LOGI("main", "PSRAM FREE: %i", (int)heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
 
-  wifi_init();
+  // wifi_init();
 
   fs_init();
 

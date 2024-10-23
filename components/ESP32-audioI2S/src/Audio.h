@@ -199,13 +199,8 @@ private:
   void            initInBuff();
   bool            httpPrint(const char* host);
   void            processLocalFile();
-  void            processWebStream();
-  void            processWebFile();
-  void            processWebStreamTS();
-  void            processWebStreamHLS();
   void            playAudioData();
   bool            readPlayListData();
-  bool            setWebFilePos(uint32_t pos);
   const char*     parsePlaylist_M3U();
   const char*     parsePlaylist_PLS();
   const char*     parsePlaylist_ASX();
