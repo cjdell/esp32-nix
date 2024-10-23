@@ -24,6 +24,8 @@ https://wiki.seeedstudio.com/xiao_esp32s3_pin_multiplexing/
 
 https://github.com/Priyanshu0901/Camera-and-SdCard-FreeRTOS
 
+https://github.com/atomic14/esp32-pdm-audio
+
 https://github.com/Seeed-Studio/wiki-documents/issues/719
 E (407) quad_psram: PSRAM ID read error: 0x00ffffff, PSRAM chip not found or not supported, or wrong PSRAM line mode
 

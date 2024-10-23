@@ -2,7 +2,10 @@
 dependencies:
   espressif/esp_codec_dev: "~1.0.0"
   jmattsson/picotts: "*"
-  espressif/arduino-esp32: "^3.0.2"
+  espressif/arduino-esp32:
+    git: git@github.com:espressif/arduino-esp32.git
+    # version: release/v3.1.x  # branch
+    version: 0a8888d5d6ee5d5267467580b67c7630ad12bf21
   ## Required IDF version
   idf:
     version: ">=4.1.0"

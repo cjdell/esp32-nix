@@ -1,8 +1,8 @@
 #include "wifi.h"
 
-void init_wifi()
+void wifi_init()
 {
-  delay(5000);
+  // delay(5000);
 
   pinMode(0, INPUT);
   digitalWrite(0, HIGH); // Pull-up
@@ -13,17 +13,17 @@ void init_wifi()
     ESP_ERROR_CHECK(nvs_flash_erase());
   }
 
-  delay(5000);
+  // delay(5000);
 
   nvs_flash_init();
 
-  delay(1000);
+  // delay(1000);
 
   ESP_LOGI(TAG, "WiFiManager starting...");
 
   WiFi.mode(WIFI_AP_STA);
 
-  delay(1000);
+  // delay(1000);
 
   // WiFiManager, Local intialization. Once its business is done, there is no need to keep it around
   WiFiManager wm;

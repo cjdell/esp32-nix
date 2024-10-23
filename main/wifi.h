@@ -7,4 +7,4 @@
 
 #include "config.h"
 
-void init_wifi();
+void wifi_init();

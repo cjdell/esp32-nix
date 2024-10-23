@@ -1,0 +1,12 @@
+menu "ESP32-NIX"
+
+    choice BOARD_HAS_PSRAM
+        prompt "BOARD_HAS_PSRAM"
+        default BOARD_HAS_PSRAM
+
+        config BOARD_HAS_PSRAM
+            bool "BOARD_HAS_PSRAM"
+
+    endchoice
+
+endmenu

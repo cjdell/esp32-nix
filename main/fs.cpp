@@ -1,13 +1,13 @@
 #include "fs.h"
 
 // https://github.com/espressif/esp-idf/blob/master/examples/storage/spiffs/main/spiffs_example_main.c
-void init_fs()
+void fs_init()
 {
   esp_vfs_spiffs_conf_t conf = {
       .base_path = "/spiffs",
       .partition_label = NULL,
       .max_files = 5,
-      .format_if_mount_failed = true};
+      .format_if_mount_failed = false};
 
   // Use settings defined above to initialize and mount SPIFFS filesystem.
   // Note: esp_vfs_spiffs_register is an all-in-one convenience function.

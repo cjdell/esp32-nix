@@ -6,4 +6,4 @@
 
 #include "config.h"
 
-void init_fs();
+void fs_init();

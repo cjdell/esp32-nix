@@ -3,3 +3,7 @@ build
 managed_components
 *.old
 *.bin
+
+examples
+additional_info
+.github
