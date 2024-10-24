@@ -12,7 +12,7 @@ static const char *TAG = "esp32-s3-nix";
 static i2s_chan_handle_t i2s_tx_chan = NULL;
 
 #define SAMPLE_RATE 48000 // Sample rate in Hz
-#define FREQUENCY 440     // Frequency of the sine wave in Hz
+#define FREQUENCY 440     // Frequency of the sine wave in Hz (measured at 477Hz)
 #define BUFFER_SIZE 256   // Buffer size for samples
 
 int16_t buffer[BUFFER_SIZE]; // Buffer to hold the samples
@@ -78,10 +78,10 @@ void loop()
         buffer[i] = (int16_t)(32767 * sinf(phase));
 
         // Add another tone at 2x freq every other second
-        if ((millis() / 1000) % 2 == 0)
-        {
-            buffer[i] = (int16_t)(32767 * sinf(phase * 2.0f));
-        }
+        // if ((millis() / 1000) % 2 == 0)
+        // {
+        //     buffer[i] += (int16_t)(32767 * sinf(phase * 2.0f));
+        // }
 
         phase += 2.0f * PI * FREQUENCY / SAMPLE_RATE;
         if (phase >= 2.0f * PI)
