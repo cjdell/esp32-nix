@@ -13,10 +13,7 @@
 
 const char greeting[] = "Hello from ESP32-S3";
 
-static void on_samples(int16_t *buf, unsigned count)
-{
-  // ESP_LOGI(TAG, "Samples: %i", count);
-}
+void speak();
 
 void setup()
 {
@@ -29,17 +26,20 @@ void setup()
 
   fs_init();
 
-  audio_init();
+  audio_pdm_init();
 
   pinMode(LED, OUTPUT);
+
+  speak();
 }
 
 int i = 0;
 
 void loop()
 {
-  audio_play();
-  vTaskDelay(1);
+  // audio_pdm_play();
+
+  vTaskDelay(1000);
 
   digitalWrite(LED, i % 2 == 1 ? HIGH : LOW);
   i++;
@@ -58,24 +58,62 @@ void audio_info(const char *info)
   ESP_LOGI("main", "==== INFO: %s", info);
 }
 
-// extern "C" void app_main()
-// {
-//   wifi_init();
+int16_t *buffer;
+int16_t *buffer_pos = NULL;
 
-//   unsigned prio = uxTaskPriorityGet(NULL);
+void task_send_samples(void *pvParameters)
+{
+  // auto buffer2 = (int16_t *)malloc(1024 * 2);
 
-//   if (picotts_init(prio, on_samples, TTS_CORE))
-//   {
-//     picotts_add(greeting, sizeof(greeting));
+  // audio_pdm_send_samples(buffer2, 1024);
 
-//     vTaskDelay(pdMS_TO_TICKS(10000));
+  // buffer2 = (int16_t *)malloc(1024 * 2);
+}
 
-//     picotts_shutdown();
-//   }
-//   else
-//   {
-//     printf("Failed to initialise TTS\n");
-//   }
+static void on_samples(int16_t *buf, unsigned count)
+{
+  // memcpy(&buffer_pos, buf, count);
 
-//   fs_init();
-// }
+  buffer_pos += count * 2;
+
+  if (buffer_pos >= buffer + 1024)
+  {
+    ESP_LOGI(TAG, "Sending... %i", buffer_pos - buffer);
+
+    buffer_pos = buffer;
+
+    // audio_pdm_send_samples(buffer, 1024);
+
+    static uint8_t ucParameterToPass;
+    TaskHandle_t xHandle = NULL;
+
+    // Create the task, storing the handle.  Note that the passed parameter ucParameterToPass
+    // must exist for the lifetime of the task, so in this case is declared static.  If it was just an
+    // an automatic stack variable it might no longer exist, or at least have been corrupted, by the time
+    // the new task attempts to access it.
+    xTaskCreate(task_send_samples, "task_send_samples", 2048, &ucParameterToPass, tskIDLE_PRIORITY, &xHandle);
+  }
+}
+
+void speak()
+{
+  buffer = (int16_t *)malloc(1024 * 2);
+  buffer_pos = buffer;
+
+  unsigned prio = uxTaskPriorityGet(NULL);
+
+  if (picotts_init(prio, on_samples, TTS_CORE))
+  {
+    picotts_add(greeting, sizeof(greeting));
+
+    vTaskDelay(pdMS_TO_TICKS(10000));
+
+    picotts_shutdown();
+  }
+  else
+  {
+    printf("Failed to initialise TTS\n");
+  }
+
+  // fs_init();
+}

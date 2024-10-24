@@ -11,7 +11,7 @@ const size_t NUM_FRAMES_TO_SEND = 1024;
 
 I2SBase::I2SBase(i2s_port_t i2s_port) : m_i2s_port(i2s_port)
 {
-  m_tmp_frames = (int16_t *)malloc(3 * sizeof(int16_t) * NUM_FRAMES_TO_SEND);
+  m_tmp_frames = (int16_t *)malloc(2 * sizeof(int16_t) * NUM_FRAMES_TO_SEND);
 }
 
 void I2SBase::stop()
@@ -32,20 +32,20 @@ void I2SBase::write(int16_t *samples, int count)
       // shift up to 16 bit samples
       int sample = process_sample(samples[sample_index]);
       // write the sample to both channels
-      m_tmp_frames[i * 3] = sample;
-      m_tmp_frames[i * 3 + 1] = sample;
-      m_tmp_frames[i * 3 + 2] = sample;
+      m_tmp_frames[i * 2] = sample;
+      m_tmp_frames[i * 2 + 1] = sample;
+      // m_tmp_frames[i * 3 + 2] = sample;
       samples_to_send++;
       sample_index++;
     }
     // write data to the i2s peripheral
     size_t bytes_written = 0;
-    esp_err_t res = i2s_write(m_i2s_port, m_tmp_frames, samples_to_send * sizeof(int16_t) * 3, &bytes_written, 1000 / portTICK_PERIOD_MS);
+    esp_err_t res = i2s_write(m_i2s_port, m_tmp_frames, samples_to_send * sizeof(int16_t) * 2, &bytes_written, 1000 / portTICK_PERIOD_MS);
     if (res != ESP_OK)
     {
       ESP_LOGE(TAG, "Error sending audio data: %d", res);
     }
-    if (bytes_written != samples_to_send * sizeof(int16_t) * 3)
+    if (bytes_written != samples_to_send * sizeof(int16_t) * 2)
     {
       ESP_LOGE(TAG, "Did not write all bytes");
     }
